@@ -7,7 +7,9 @@
 **/
 
 public class BinaryTree<E extends ComparableInterface<E>>{
-
+	protected int contar;
+	protected TreeNode<E> raiz;
+	protected Comparator<E> orden;
 
 
 }
