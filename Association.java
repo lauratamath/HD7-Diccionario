@@ -1,10 +1,12 @@
 /**
 *@author: Laura Tamath
 *@since 17/02/2020
-*@version 17/02/2020
+*@version 18/02/2020
 *referencias: Java Structures, en el capítulo 12 
 **/
-public class Association<K, V>{
+import java.util.Map;
+
+public class Association<K, V> implements Map.Entry<K,V>{
 	private K key;
 	private V  value; 
 
@@ -15,6 +17,14 @@ public class Association<K, V>{
 		**/
 		this.key = key;
 		this.value = value;
+	}
+
+	public Association(K key){
+		/**
+		pre: Key no es nulo
+		post: Se construye un par key-value, el valor es nulo
+		**/
+		this(key, null);
 	}
 
 	public K getKey(){
@@ -32,4 +42,23 @@ public class Association<K, V>{
 		**/
 		return this.value;
 	}
+
+	public V setValue(V value){
+		/**
+		pre: establece el valor del par clave-valor.
+        post establece el valor de la asociación en valor
+		**/
+		V old = value;
+		value = value;
+		return old;
+	}
+	
+	public int hashCode(){
+		/**
+		post: Devuelve el valor de la asociacion 
+		**/
+		return getKey().hashCode();
+	}	
+
+	
 }
