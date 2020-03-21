@@ -46,7 +46,7 @@ public class Main{
         
         File archivo = new File ("texto.txt");
 
-        FileReader fileRead = new FileReader (archivo);
+        FileReader fileRead = new FileReader (archivo); //Lee el archivo con la palabra a traducir
         BufferedReader bufferRead= new BufferedReader(fileRead);
         String line = "";
         Scanner sc = new Scanner(fileRead);
@@ -55,7 +55,8 @@ public class Main{
         while (sc.hasNextLine()) {
             line += sc.nextLine();
             palabra = line.replaceAll("\n", " ");
-        }fileRead.close();
+        }
+        fileRead.close();
         bufferRead.close();
         
         String palabras[] = palabra.split(" ");
@@ -69,7 +70,6 @@ public class Main{
             word = k.toUpperCase();
             resultado += bin.buscar(word) + " ";
         }
-         //System.out.println("\n\n\n\n");
         System.out.println("----------------------------------");
         System.out.println("Traduccion del documento.");
         System.out.println(resultado);

@@ -70,7 +70,7 @@ public class TreeNode<E>{
     //para buscar la plabra en el arbol
     public String buscar(String value){
         if(value.equals(this.value.getKey())){
-            return this.value.getKey();
+            return this.value.tvalue;
         }else if(value.compareTo(this.value.getKey())<0){
             if(izq == null){
                 return "* "+ value + " *";
@@ -90,7 +90,7 @@ public class TreeNode<E>{
 
     @Override
     public String toString(){
-        String texto = "(" + value.tkey + " , " + value.tvalue + ")\n";
+        String texto = "(" + value.tkey + "," + value.tvalue + ")\n";
         return texto;
     }
 }
