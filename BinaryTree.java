@@ -8,7 +8,7 @@
 **/
 
 public class BinaryTree<E>{
-	private Node root;
+	private TreeNode root;
 
 	public BinaryTree(){
 		/**
@@ -17,16 +17,16 @@ public class BinaryTree<E>{
 		root = null; 
 	}
 
-	public void insertar(Node newN){
+	public void insertar(TreeNode newN){
 		/**
 		* @param newN representa el nuevo nodo
 		* pre: Establece el punto de partida
 		* post: Determina en donde se inserta el nuevo nodo
 		**/
-		root = insert(root, newN);
+		root = insertR(root, newN);
 	}
 
-	public Node getRoot(){
+	public TreeNode getRoot(){
 		//se le da un valor a la raiz
 		return root;
 	}
@@ -39,7 +39,7 @@ public class BinaryTree<E>{
 		ordenR(root);
 	}
 
-	public Node insertR(Node root, Node nodo){
+	public TreeNode insertR(TreeNode root, TreeNode nodo){
 		/**
 		pre: el root aun no tiene un vlaor establecido
 		post: Se inserta el nodo en cierta posicion del arbol
@@ -71,7 +71,7 @@ public class BinaryTree<E>{
 		return root;
 	}
 
-	public void ordenR(Node root){
+	public void ordenR(TreeNode root){
 		if(root != null){
 			ordenR(root.getIzq());
 			System.out.println(root.toString());

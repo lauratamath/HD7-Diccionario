@@ -6,90 +6,94 @@
 **/
 
 public class TreeNode<E>{
+    private Association<String, String> value;
 	private E datos;
 	private TreeNode<E> p, dere, izq;
 
-	public TreeNode(){
+	public TreeNode(String ingles, String espanol){
 		/**
-		pre: Se intancia un nodo vacio
-		post: Se crea un nodo vacio
-		**/
-		izq = dere = this;
-		data = null;
-		p = null;
+        pre: intancia un nodo con un valor y dos hijos
+        post: delvuelve un arbol con dos referencias
+        **/
+		value = new Association<>(ingles, espanol);
+        p=null;
+        izq = dere =null;
 	}
 
-	public TreeNode(E newData) {
-		/**
-		pre: Se intancia un nuevo nodo
-		post: Se crea un nuevo nodo
-		**/
-		datos = newData;
-		setLeft(izq);
-		setRight(dere);
-		izq = dere =  new TreeNode<>();
-	}
+    //Sets y gets
 
-	 public TreeNode(E value, TreeNode<E> left, TreeNode<E> right){
-	 	/**
-	 	pre: intancia un nodo con un valor y dos hijos
-	 	post: delvuelve un arbol con dos referencias
-	 	**/
+    public Association<String, String> getValue(){
+        /**
+        pre: Obtiene el valor del contenido en el nodo
+        post: devulve la palabra en espanol
+        **/
+        return value;
+    }
 
-        data = value;
+    public String getKey(){
+        //Retorna la palabra en ingles
+        return value.getKey();
+    }
 
-        if (left == null){
-            left = new TreeNode<>();
+    public String getEspa(){
+        //retorna la palabra en espanol
+        return value.tvalue;
+    }
+
+    public TreeNode<E> getParent(){
+        //retorna padres
+        return p;
+    }
+    public void setParent(TreeNode<E> newp){
+        //brinda referencia a padre.
+        p = newp;
+    }
+
+    public TreeNode<E> getDere(){
+        //retorna la referencia a hiijo derecho
+        return dere;
+    }
+    public void setDere(TreeNode<E> dere){
+        //brinda referencia a hijo derecho.
+        this.dere=dere;
+    }
+
+    public TreeNode<E> getIzq(){
+         //retorna la referencia a hiijo izquierdo
+        return izq; 
+    }
+    public void setIzq(TreeNode<E> izq){
+        //brinda referencia a hijo izquierdo.
+        this.izq = izq;
+    }
+
+    //para buscar la plabra en el arbol
+    public String buscar(String value){
+        if(value.equals(this.value.getKey())){
+            return this.value.getKey();
+        }else if(value.compareTo(this.value.getKey())<0){
+            if(izq == null){
+                return "* "+ value + " *";
+            }else{
+                return izq.buscar(value);
+            }
+        }else if(value.compareTo(this.value.getKey())>0){
+            if(dere == null){
+                return "* "+ value + " *";
+            }else{
+                return dere.buscar(value);
+            }
         }
-        setLeftSon(left);
-        if (right == null){
-            right = new TreeNode<>();
-        }
-        setRight(right);
-    }
-    public Boolean isEmpty(){
-    	return (p == nul && dere == null && izq == null);
+
+        return "* "+ value + " *";
     }
 
-
-
-    public TreeNode<E> getP(){
-    	return p;
+    @Override
+    public String toString(){
+        String texto = "(" + value.tkey + " , " + value.tvalue + ")\n";
+        return texto;
     }
-    public void setP(TreeNode<E> newP){
-    	p = newp;
-    }
-
-
-    public TreeNode<E> getRight(){
-    	return dere;
-    }
-    public void setRight(TreeNode<E> newDere){
-    	if (dere != null && dere.getP() == this){
-    		dere.setP;
-    	}
-    	this.dere = newDere;
-    	dere.setP(this); 
-    }
-
-
-    public TreeNode<E> getLeft(){
-    	return izq;
-    }
-    public void setLeft(TreeNode<E> newIzq){
-    	if(izq != null && izq.getP() == this){
-    		izq.setP(null);
-    	}
-    	this.izq = newIzq;
-    	izq.setP(this);
-    }
-
-
-    public E getData(){
-    	return datos;
-    }
-    public void setData(E newData){
-    	datos = newData;
-    }
-
 }
+
+
+   

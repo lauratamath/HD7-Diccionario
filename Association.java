@@ -7,16 +7,16 @@
 import java.util.Map;
 
 public class Association<K, V> implements Map.Entry<K,V>{
-	private K key;
-	private V  value; 
+	protected K tkey;
+	protected V  tvalue; 
 
 	public Association(K key, V value){
 		/**
 		pre: se instancia el objeto
 		post: se crea un objeto de tipo association
 		**/
-		this.key = key;
-		this.value = value;
+		tkey = key;
+		tvalue = value;
 	}
 
 	public Association(K key){
@@ -32,7 +32,7 @@ public class Association<K, V> implements Map.Entry<K,V>{
 		pre: Conseguir el valor de la llave
 		post: devuelve es valor de la llave
 		**/
-		return this.key;
+		return tkey;
 	}
 
 	public V getValue(){
@@ -40,7 +40,7 @@ public class Association<K, V> implements Map.Entry<K,V>{
 		pre: Conseguir el valor del dato
 		post: devulve el valor del dato
 		**/
-		return this.value;
+		return tvalue;
 	}
 
 	public V setValue(V value){
@@ -48,8 +48,8 @@ public class Association<K, V> implements Map.Entry<K,V>{
 		pre: establece el valor del par clave-valor.
         post establece el valor de la asociación en valor
 		**/
-		V old = value;
-		value = value;
+		V old = tvalue;
+		tvalue = value;
 		return old;
 	}
 	
@@ -59,6 +59,12 @@ public class Association<K, V> implements Map.Entry<K,V>{
 		**/
 		return getKey().hashCode();
 	}	
+
+	@Override
+	public boolean equals(Object next){
+		Association other = (Association)next;
+		return getKey().equals(other.getKey());
+	}
 
 	
 }
